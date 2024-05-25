@@ -1,4 +1,4 @@
-<h1>Ecosphere Theme</h1>h1>
+<h1>Ecosphere Theme</h1>
 
 Overview
 Welcome to the Ecosphere theme repository, an optimized and customized WordPress theme built on BootPress Lite. This project aims to provide a robust, flexible, and scalable solution for the Ecosphere project, leveraging modern web technologies and best practices in theme development.
