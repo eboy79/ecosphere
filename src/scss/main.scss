@@ -1,0 +1,736 @@
+// Import Bootstrap functions, variables, and maps
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+
+// Import Bootstrap mixins and utilities API
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
+
+// Import Bootstrap components
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Import your custom SCSS files
+//@import 'reset'; // Example: importing a reset stylesheet
+//@import 'variables'; // Example: importing variables
+//@import 'mixins'; // Example: importing mixins
+//@import 'base'; // Example: importing base styles
+//@import 'components/button'; // Example: importing a button component
+//@import 'layouts/header'; // Example: importing a header layout
+// Add other imports as necessary
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  src: url('../assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 600;
+  src: url('../assets/fonts/Inter-SemiBold.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  src: url('../assets/fonts/Inter-Bold.woff2') format('woff2');
+  font-display: swap;
+}
+
+
+// Define custom theme colors as RGB
+$theme-colors-rgb: ();
+
+// Convert $theme-colors to rgba and store in $theme-colors-rgb
+@each $color, $value in $theme-colors {
+  $theme-colors-rgb: map-merge($theme-colors-rgb, (
+    #{$color}: rgba(red($value), green($value), blue($value), 1)
+  ));
+}
+
+// Ensure all utility variables are initialized as maps with default values
+$utilities-links-underline: (default: "underline") !default;
+$utilities-links-color: (link: map-get($theme-colors-rgb, 'primary')) !default;
+$utilities-colors: $theme-colors-rgb !default;
+$utilities-border-colors: $theme-colors-rgb !default;
+$utilities-border-subtle: (
+  primary: rgba(map-get($theme-colors-rgb, 'primary'), 0.2),
+  secondary: rgba(map-get($theme-colors-rgb, 'secondary'), 0.2)
+) !default;
+$utilities-text-colors: (body: map-get($theme-colors-rgb, 'primary')) !default;
+
+
+
+
+// Add custom styles
+body {
+  letter-spacing: -0.02em;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+  background-color: #ffffff;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  src: url('../assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 600;
+  src: url('../assets/fonts/Inter-SemiBold.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  src: url('../assets/fonts/Inter-Bold.woff2') format('woff2');
+  font-display: swap;
+}
+
+html, :host {
+  line-height: 1.5;
+  text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700; /* Use the bold version of the font */
+  font-size: 3.5rem;
+  letter-spacing: -0.05em;
+}
+
+p {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  line-height: 1.5; /* Set the line height */
+  font-size: larger;
+}
+
+.richtext > *, .metafield-rich_text_field > * {
+  margin-bottom: 1em;
+}
+
+/* General reset styles */
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0px;
+  border-style: solid;
+  border-color: rgb(229, 231, 235);
+}
+
+/* Remove default margins for these elements */
+blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
+  margin: 0px;
+}
+
+.ham {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hamRotate.active {
+  transform: rotate(45deg);
+}
+
+.hamRotate180.active {
+  transform: rotate(180deg);
+}
+
+.line {
+  fill: none;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  stroke: #fff;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+}
+
+.ham1 .top {
+  stroke-dasharray: 40 139;
+}
+
+.ham1 .bottom {
+  stroke-dasharray: 40 180;
+}
+
+.ham1.active .top {
+  stroke-dashoffset: -98px;
+}
+
+.ham1.active .bottom {
+  stroke-dashoffset: -138px;
+}
+// termnal styles
+.terminal-window {
+  text-align: left;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: auto;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.93);
+  color: #fff;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.terminal-window header {
+  background: #E0E8F0;
+  height: 30px;
+  border-radius: 8px 8px 0 0;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.terminal-window header .button {
+  width: 12px;
+  height: 12px;
+  margin: 10px 4px 0 0;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.terminal-window header .button.green {
+  background: #3BB662;
+}
+
+.terminal-window header .button.yellow {
+  background: #E5C30F;
+}
+
+.terminal-window header .button.red {
+  background: #E75448;
+}
+
+.terminal {
+  color: white;
+  font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
+  font-size: 11pt;
+  background: #30353A;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#events-log {
+  overflow-y: auto;
+  max-height: 50vh;
+  margin-top: 10px;
+}
+
+.events-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#toggle-stats {
+  position: fixed;
+  bottom: 10px;
+  right: 10px; /* Moved 20px farther to the right */
+  background: rgba(0, 0, 0, 0.93);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#toggle-stats svg {
+  fill: white;
+}
+
+.collapsed {
+  display: none;
+}
+#page-load-info.collapsed {
+  transform: translateX(100%);
+  opacity: 0;
+}
+#page-load-info {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  background: rgba(0, 0, 0, .7);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  display: block;
+}
+//header menu stuff
+.menu-container {
+  display: none;
+  position: absolute;
+  top: 10%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.menu-container ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-container li {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.menu-toggle {
+  border-radius: 8px;
+  cursor: pointer;
+}
+//text reveal aniamtion 
+.frame {
+	padding: 3rem 5vw;
+	text-align: center;
+	position: relative;
+	z-index: 1000;
+}
+
+.frame__title {
+	font-size: .7rem;
+	margin: 0 0 1rem;
+	font-weight: normal;
+}
+
+.frame__links {
+	margin: 0.35rem 0 0 0;
+}
+
+.frame__links a:not(:last-child) {
+	margin-right: 1rem;
+}
+
+.frame__home {
+	text-decoration: none;
+	color: var(--color-text);
+	display: inline-block;
+	height: 1.75rem;
+	margin: 1rem 0;
+}
+
+.frame__home-title {
+	font-weight: 700;
+}
+
+.frame__home-sub {
+	align-self: flex-end;
+	margin-left: 0.5rem;
+}
+
+.frame__about {
+	display: inline-block;
+	margin: 1rem 0;
+	font-weight: 700;
+	text-decoration: none;
+	color: var(--color-text);
+}
+
+.frame__about-item {
+	display: none;
+}
+
+.frame__about-item--current {
+	display: inline-block;
+}
+
+.content {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-areas: "content-item";
+	justify-content: center;
+	position: relative;
+	cursor: default;
+}
+
+.content__item {
+	grid-area: content-item;
+	opacity: 1;
+	pointer-events: none;
+	display: flex;
+	align-content: center;
+	flex-direction: column;
+	padding: 0 1rem;
+	overflow: hidden;
+	height: 0;
+}
+.splitting{overflow:hidden;}
+
+.content__item--home {
+	justify-content: center;
+	min-height: 300px;
+}
+
+.content__item--current {
+	overflow: visible;
+	height: auto;
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.content__item-credits {
+	margin-top: auto;
+	align-self: center;
+	max-width: 260px;
+	text-align: center;
+	padding-bottom: 3rem;
+}
+
+.content__item-credits a {
+	white-space: nowrap;
+}
+
+.content__paragraph {
+	font-family: freight-big-pro, serif;
+	font-size: 6.5vw;
+	font-weight: 300;
+	letter-spacing: -0.2vw;
+	word-spacing: 1vw;
+	text-transform: uppercase;
+	margin: 0;
+	line-height: 1;
+	position: relative;
+	overflow: hidden;
+	flex: none;
+}
+
+.content__paragraph--first {
+	margin-top: auto;
+}
+
+.content__paragraph--last {
+	margin-bottom: auto;
+}
+
+.content__paragraph--large {
+	font-size: 4vw;
+}
+
+.content__paragraph--right {
+	align-self: flex-end;
+}
+
+.content__figure {
+	margin: 0;
+	max-width: 100%;
+	margin-top: 0.5rem;
+	position: relative;
+}
+
+.content__figure-img {
+	max-width: 100%;
+}
+
+.content__figure-caption {
+	margin: 1rem 0 0 0;
+	font-size: 0.85rem;
+	padding-bottom: 5rem;
+}
+
+.char {
+	will-change: transform;
+}
+
+.cursor {
+	display: none;
+}
+
+@media screen and (min-width: 53em) {
+	.frame {
+		position: absolute;
+		text-align: left;
+		top: 0;
+		left: 0;
+		display: grid;
+		align-content: space-between;
+		width: 100%;
+		max-width: none;
+		height: 100vh;
+		padding: 3rem 8vw;
+		pointer-events: none;
+		grid-template-columns: 20% 60% 20%;
+		grid-template-rows: auto auto auto;
+		grid-template-areas: 'home title about'
+							'... ... ...'
+							'... ... credits';
+	}
+	.frame__home {
+		display: flex;
+		grid-area: home;
+		justify-content: flex-start;
+		justify-self: start;
+		margin: 0;
+	}
+	.frame__title-wrap {
+		grid-area: title;
+		text-align: center;
+	}
+	.frame__title {
+		margin: 0;
+	}
+	.frame__links {
+		margin: 1rem 0 0 0;
+	}
+	.frame__about {
+		margin: 0;
+		grid-area: about;
+		align-self: start;
+		justify-self: end;
+	}
+	.frame__credits {
+		text-align: right;
+		grid-area: credits;
+		justify-self: end;
+	}
+	.frame a {
+		pointer-events: auto;
+	}
+	.content__item {
+		min-height: 100vh;
+		padding:0;
+	}
+	.content__title-inner--offset {
+	    margin-top: 3rem;
+	}
+	.content__title-seperator {
+		margin: 0 2rem;
+	}
+	.content__item--home {
+		max-height: none;
+	}
+	.content__figure {
+		max-width: 48vw;
+		justify-self: flex-end;
+		margin-left: auto;
+		margin-top: -5vw;
+	}
+	.content__figure-caption {
+		position: absolute;
+		right: 100%;
+		bottom: 0;
+		margin-right: 2rem;
+		text-align: right;
+		width: 50%;
+		font-size: 1rem;
+		padding: 0;
+	}
+	.content__item-credits {
+		align-self: flex-end;
+		max-width: 260px;
+		text-align: right;
+		padding: 0;
+	}
+}
+
+@media (any-pointer: fine) {
+	.cursor {
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: block;
+		pointer-events: none;
+	}
+	.cursor__inner {
+		fill: var(--cursor-fill);
+		stroke: var(--cursor-stroke);
+		stroke-width: var(--cursor-stroke-width);
+		opacity: 0.5;
+	}
+}
+//end text reveal
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+//lenis css end
+
+.scramble {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+///text block slider 
+.ticker-row {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  visibility: hidden; /* Initially hide the ticker rows */
+  height: 0; /* Initially set height to 0 to avoid flash */
+}
+
+.ticker-container {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  position: absolute; /* Use absolute positioning for smooth animation */
+  left: 0; /* Align the container to the left edge of the row */
+}
+
+.ticker-row img {
+  display: inline-block; /* Ensure the images are inline-block elements */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 100%; /* Ensure the images fit the container height */
+}
+
+.hidden {
+  visibility: hidden; /* Hide elements with the hidden class */
+}
+
+.loaded {
+  visibility: visible; /* Show elements once they are loaded */
+}
+.content-wrapper {
+  min-height: 100vh; /* Ensure the content wrapper takes at least the full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem; /* Adjust as needed */
+  text-align: center;
+}
+///text block slider end
+ 
+
+
+#svg-container {
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+  height: 170px;
+  position: relative;
+  width: 100%;
+  font-size: calc(10rem + 10vw);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.wide-container {
+  display: flex;
+  flex-direction: row;
+  width: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100%;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.word-svg {
+  transform-origin: top left;
+  opacity: 1;
+  transform: translateZ(0);
+  will-change: transform;
+}
+.ticker-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  overflow:hidden;
+  will-change: transform
+}
+
+.ticker-row {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  will-change: transform
+}
+
+.svg-letter {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+  will-change: transform
+}
+
+.svg-letter svg {
+  height: 100%;
+  display: block;
+  will-change: transform
+}
+#viewer {
+  width: 100vw;
+  height: 100vh;
+}
+.hidden {
+  display: none;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff; /* Adjust background color as needed */
+}

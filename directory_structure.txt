@@ -1,0 +1,21 @@
+   .
+   |-- css
+   |-- dist
+   |-- --css
+   |-- --js
+   |-- --templates
+   |-- --assets
+   |-- ----fonts
+   |-- js
+   |-- node_modules
+   |-- templates
+   |-- assets
+   |-- --fonts
+   |-- src
+   |-- --images
+   |-- --js
+   |-- ----gsap
+   |-- ----animations
+   |-- --scss
+   |-- --php
+   |-- --build
